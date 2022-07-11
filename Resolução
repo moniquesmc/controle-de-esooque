@@ -1,0 +1,153 @@
+//Exercício Sobre Controle de Estoque
+
+
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+
+
+//função sobre o código dos produtos
+
+void cod999(int cod[], int k)
+
+{
+
+
+
+    printf("***********************************************\n");
+
+    printf("Número do pedido: 999\n");
+
+    printf("Código da mercadoria: %i\n", cod[k]);
+
+    printf("PEDIDOS ENCERRADOS\n");
+
+    printf("***********************************************\n\n");
+
+}
+
+
+
+//função para falta de estoque
+
+void faltaEstoque(int cod[], int n[], int k)
+
+{
+
+
+
+    printf("***********************************************\n");
+
+    printf("Número do pedido: %i\n", n[k]);
+
+    printf("Código da mercadoria: %i\n", cod[k]);
+
+    printf("NÃO TEMOS A MERCADORIA EM ESTOQUE SUFICIENTE!\n");
+
+    printf("***********************************************\n\n");
+
+}
+
+
+
+//programa de pedido e controle de estoque
+
+int main()
+
+{
+
+    int cod[100], q[100];
+
+    int n[100], qp[100], j;
+
+    
+
+    for(int i = 0; i < 100; i++)
+
+    {
+
+        q[i] = 100;
+
+    }
+
+    for(int i = 0; i < 100; i++)
+
+    {
+
+        printf("Escreva o código da mercadoria:\n");
+
+        scanf("%i", &cod[i]);
+
+        if(cod[i] == 999)
+
+        {
+
+            cod999(cod,i);
+
+            i = 100;
+
+        }else
+
+        {
+
+            printf("Escreva o número de cliente:\n");
+
+            scanf("%i", &n[i]);
+
+            printf("Escreva a quantidade de mercadorias:\n");
+
+            scanf("%i", &qp[i]);
+
+            for(int j = 0; j <= i; j++)
+
+            {
+
+                if(cod[i] == cod[j]){
+
+                q[i] = q[j];
+
+            }
+
+            j = j + 1;
+
+        }
+
+
+
+        if(q[i] < qp[i])
+
+        {
+
+            faltaEstoque(cod, n, i);
+
+        }else
+
+        {
+
+            q[i] = q[i] - qp[i];
+
+            printf("***********************************************\n");
+
+            printf("Número do pedido: %i\n", n[i]);
+
+            printf("Código da mercadoria: %i\n", cod[i]);
+
+            printf("Estoque atualizado! Quantidade restante: %i\n", q[i]);
+
+            printf("***********************************************\n\n");
+
+        }
+
+          i = i + 1;
+
+          j = 0;
+
+        }
+
+    }
+
+    return 0;
+
+}
